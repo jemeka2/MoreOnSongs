@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Song Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/songform}">New Songs</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/allSongs}">All Songs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/confirmsong}">Song Info</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<h2>Song Form</h2>
+
+<form action="#" th:action="@{/confirmSong}" th:object="${song}" method="post"> <!--This is song because it is song in the GettMapping -->
+  Name of Song:   <input type="text" th:field="*{name}"> <br>
+  <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+  <br>
+  Artist: <input type="text" th:field="*{artist}"><br>
+  <span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"></span>
+  <br>
+  Album:  <input type="text" th:field="*{album}"><br>
+  <span th:if="${#fields.hasErrors('album')}" th:errors="*{album}"></span>
+  <br>
+  Rating: <input type="number" th:field="*{rating}"><br>
+  <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
+  <br>
+  Year:   <input type="number" th:field="*{year}"><br>
+  <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+  <br>
+  Genre:
+  <select th:field="*{genre}">
+    <option value="R" th:text="Rock"></option>
+    <option value="H" th:text="HipHop"></option>
+    <option value="C" th:text="Country"></option>
+    <option value="J" th:text="Jazz"></option>
+  </select>
+  <span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></span>
+
+  Stock:
+  <select th:field="*{inStock}">
+    <option value="true" th:text="Yes"></option>
+    <option value="false" th:text="No"></option>
+  </select>
+  <span th:if="${#fields.hasErrors('inStock')}" th:errors="*{inStock"}></span>
+
+  <br><br>
+  <input type="submit" value="Submit"> <!--Need this for the form to pass and go through-->
+
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
